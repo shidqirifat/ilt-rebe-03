@@ -1,14 +1,14 @@
-import Hero from "./components/main/Hero";
-import ListRestaurant from "./components/main/ListRestaurant";
-import Layout from "./layouts/Layout";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import DetailRestaurantPage from "./pages/DetailRestaurantPage";
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/:id", element: <DetailRestaurantPage /> },
+]);
 
 function App() {
-  return (
-    <Layout>
-      <Hero />
-      <ListRestaurant />
-    </Layout>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

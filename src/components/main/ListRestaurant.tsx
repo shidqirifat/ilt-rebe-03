@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CardRestaurant = () => {
   const BASE_IMAGE = "https://restaurant-api.dicoding.dev/images/medium";
 
@@ -9,15 +11,18 @@ const CardRestaurant = () => {
         className="object-cover h-48 w-full"
       />
       <div className="p-4">
-        <h3 className="text-xl font-medium leading-6 text-sky-600">
+        <Link
+          to="/14"
+          className="text-xl font-medium leading-6 text-sky-600 underline underline-offset-2"
+        >
           Melting Pot
-        </h3>
+        </Link>
         <div className="mt-2 flex items-center gap-2">
           <h4 className="text-base text-slate-700 leading-5 font-normal">
             Medan
           </h4>
           <div className="border-l border-slate-400 h-4 w-0" />
-          <h4 className="text-base leading-5 font-normal">⭐⭐⭐⭐</h4>
+          <h4 className="text-base leading-5 font-normal">{"⭐".repeat(4)}</h4>
         </div>
 
         <p className="text-slate-600 font-normal leading-5 text-sm mt-2 line-clamp-4">

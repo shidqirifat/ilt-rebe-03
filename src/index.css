@@ -7,3 +7,7 @@ input:focus-within,
 textarea:focus-within {
   @apply !ring-0 !border-none !outline-sky-500 !outline-offset-2;
 }
+
+html {
+  scroll-behavior: smooth;
+}
