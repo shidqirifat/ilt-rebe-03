@@ -3,6 +3,7 @@ import {
   Category,
   ImageRestaurant,
   Label,
+  PostReview,
   Review,
 } from "@/components/main/DetailRestaurant";
 import Layout from "@/layouts/Layout";
@@ -92,6 +93,7 @@ export default function DetailRestaurantPage() {
             <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
             <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
             <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
+            <PostReview />
           </div>
         </div>
       </div>
