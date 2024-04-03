@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button:focus-within,
+input:focus-within,
+textarea:focus-within {
+  @apply !ring-0 !border-none !outline-sky-500 !outline-offset-2;
+}
