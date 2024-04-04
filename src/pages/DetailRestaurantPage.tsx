@@ -6,57 +6,54 @@ import {
   PostReview,
   Review,
 } from "@/components/main/DetailRestaurant";
+import { detailRestaurant } from "@/datas/restaurant";
 import Layout from "@/layouts/Layout";
+import { DetailRestaurant } from "@/types/restaurant";
 
+// @TODO change to class component and fetch to API
 export default function DetailRestaurantPage() {
   window.scrollTo(0, 0);
+
+  const restaurant: DetailRestaurant = detailRestaurant;
 
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-4 pt-3 pb-12 xl:px-0">
         <BackToHome />
 
-        <ImageRestaurant />
+        <ImageRestaurant pirctureId={restaurant.pictureId} />
 
         <h1 className="text-slate-800 font-semibold text-2xl leading-7">
-          Melting Point
+          {restaurant.name}
         </h1>
 
         <div className="mt-2 flex items-center gap-2">
           <Label>Address:</Label>
           <h3 className="text-slate-700 font-normal text-balance">
-            Jln. Pandeglang no 19, Medan
+            {restaurant.address}, {restaurant.city}
           </h3>
         </div>
 
         <div className="mt-1 flex items-center gap-2">
           <Label>Rating:</Label>
-          <h4 className="text-sm">{"⭐".repeat(4)}</h4>
+          <h4 className="text-sm">
+            {"⭐".repeat(Math.floor(restaurant.rating))}
+          </h4>
         </div>
 
         <div className="mt-6">
           <Label>Description:</Label>
           <p className="text-slate-600 font-normal text-sm leading-5 mt-1">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-            placeat, nostrum illo sed ad facere laborum voluptas recusandae
-            autem iusto, hic suscipit id dolores tempora itaque officiis aliquam
-            quos! Quos cum quibusdam pariatur, nemo minima maiores atque quae
-            veritatis saepe dolore minus repellendus nostrum amet facilis ad
-            rerum! Repellendus temporibus laborum ipsa, obcaecati iure libero
-            cumque amet hic cum, omnis iste velit facilis et, beatae recusandae
-            maiores accusamus! Alias animi ea dolores quas, neque eum quibusdam
-            earum. Libero, pariatur praesentium. Repellendus obcaecati iusto
-            veritatis ea facilis vel quas illo voluptate vero, odio repellat
-            fugit quia error? Cupiditate veniam labore perspiciatis accusantium
-            quasi tempore esse nihil voluptatem unde. Culpa!
+            {restaurant.description}
           </p>
         </div>
 
         <div className="mt-6">
           <Label>Categories:</Label>
           <div className="mt-1 inline-flex flex-wrap gap-2">
-            <Category>Italy</Category>
-            <Category>Modern</Category>
+            {restaurant.categories.map((category) => (
+              <Category>{category.name}</Category>
+            ))}
           </div>
         </div>
 
@@ -66,20 +63,18 @@ export default function DetailRestaurantPage() {
             <div>
               <Label>List of Food 🍕:</Label>
               <ul className="mt-1 space-y-1">
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
+                {restaurant.menus.foods.map((food) => (
+                  <li className="text-sm">👉 {food.name}</li>
+                ))}
               </ul>
             </div>
 
             <div>
               <Label>List of Drink 🍷:</Label>
               <ul className="mt-1 space-y-1">
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
-                <li className="text-sm">👉 Paket rosemary</li>
+                {restaurant.menus.drinks.map((drink) => (
+                  <li className="text-sm">👉 {drink.name}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -88,11 +83,9 @@ export default function DetailRestaurantPage() {
         <div className="mt-6">
           <Label>Customes Reviews:</Label>
           <div className="mt-2 grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
-            <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
-            <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
-            <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
-            <Review name="Shidqi" review="Enak banget!" date="20 Juli 2023" />
+            {restaurant.customerReviews.map((review) => (
+              <Review {...review} />
+            ))}
             <PostReview />
           </div>
         </div>
