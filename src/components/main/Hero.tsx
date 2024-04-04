@@ -1,6 +1,11 @@
 import { Input } from "../ui/input";
 
-export default function Hero() {
+type HeroProps = {
+  keyword: string;
+  setKeyword: (keyword: string) => void;
+};
+
+export default function Hero({ keyword, setKeyword }: HeroProps) {
   return (
     <div className="relative">
       <div className="h-[420px] bg-[url('/assets/hero.webp')] bg-cover bg-center brightness-50 opacity-90" />
@@ -13,6 +18,8 @@ export default function Hero() {
         <Input
           className="bg-white/40 w-[300px] shadow-xl placeholder:text-slate-200/90 text-white rounded-3xl px-4"
           placeholder="Search restaurant"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
         />
       </div>
     </div>

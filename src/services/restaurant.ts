@@ -10,11 +10,14 @@ const delay = async (millis: number) => {
   await new Promise((resolve) => setTimeout(resolve, millis));
 };
 
-export const getListRestaurant = async (): Promise<ResponseListRestaurant> => {
+export const getListRestaurant = async (
+  keyword: string
+): Promise<ResponseListRestaurant> => {
   await delay(2000);
 
+  const url = keyword ? `/search?q=${keyword}` : "/list";
   const response: AxiosResponse<ResponseListRestaurant> = await api.get(
-    `${CONFIG.BASE_URL_API}/list`
+    `${CONFIG.BASE_URL_API}${url}`
   );
   return response.data;
 };

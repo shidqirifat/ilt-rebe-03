@@ -40,6 +40,16 @@ export default function ListRestaurant({
 }: {
   restaurants: Array<Restaurant>;
 }) {
+  if (restaurants.length === 0) {
+    return (
+      <div className="py-24 text-center">
+        <h3 className="text-slate-800 font-medium text-lg leading-5">
+          Restaurant not found
+        </h3>
+      </div>
+    );
+  }
+
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-4 xl:px-0 max-w-6xl mx-auto">
       {restaurants.map((restaurant) => (

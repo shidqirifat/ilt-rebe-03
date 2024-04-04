@@ -6,14 +6,15 @@ import useListRestaurant from "@/hooks/useListRestaurant";
 import Layout from "@/layouts/Layout";
 
 export default function HomePage() {
-  const { restaurants, loading, error } = useListRestaurant();
+  const { restaurants, loading, error, keyword, setKeyword } =
+    useListRestaurant();
 
   if (error) return <Error />;
   if (loading) return <Loading />;
 
   return (
     <Layout>
-      <Hero />
+      <Hero keyword={keyword} setKeyword={setKeyword} />
       <ListRestaurant restaurants={restaurants} />
     </Layout>
   );
