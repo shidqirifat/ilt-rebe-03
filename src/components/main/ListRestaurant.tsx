@@ -13,7 +13,7 @@ const CardRestaurant = (props: Restaurant) => {
       />
       <div className="p-4">
         <Link
-          to="/14"
+          to={`/${props.id}`}
           className="text-xl font-medium leading-6 text-sky-600 underline underline-offset-2"
         >
           {props.name}
@@ -44,7 +44,7 @@ export default function ListRestaurant({
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-4 xl:px-0 max-w-6xl mx-auto">
       {restaurants.map((restaurant) => (
-        <CardRestaurant {...restaurant} />
+        <CardRestaurant key={restaurant.id} {...restaurant} />
       ))}
     </div>
   );

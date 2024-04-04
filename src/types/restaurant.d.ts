@@ -32,3 +32,17 @@ export type DetailRestaurant = {
   rating: number;
   customerReviews: Array<CustomerReview>;
 };
+
+type ResponseAPI = {
+  error: boolean;
+  message: string;
+};
+
+export interface ResponseListRestaurant extends ResponseAPI {
+  count: number;
+  restaurants: Array<Restaurant>;
+}
+
+export interface ResponseDetailRestaurant extends ResponseAPI {
+  restaurant: DetailRestaurant;
+}
