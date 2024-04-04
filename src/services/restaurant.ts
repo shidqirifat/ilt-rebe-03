@@ -29,3 +29,19 @@ export const getDetailRestaurant = async (
   );
   return response.data;
 };
+
+type PayloadReview = {
+  id: string;
+  name: string;
+  review: string;
+};
+
+export const postReview = async (payload: PayloadReview) => {
+  await delay(2000);
+
+  const response: AxiosResponse<ResponseDetailRestaurant> = await api.post(
+    `${CONFIG.BASE_URL_API}/review`,
+    payload
+  );
+  return response.data;
+};

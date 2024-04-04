@@ -53,8 +53,8 @@ export default function DetailRestaurantPage() {
           <div className="mt-6">
             <Label>Categories:</Label>
             <div className="mt-1 inline-flex flex-wrap gap-2">
-              {restaurant.categories.map((category) => (
-                <Category>{category.name}</Category>
+              {restaurant.categories.map((category, i) => (
+                <Category key={i}>{category.name}</Category>
               ))}
             </div>
           </div>
@@ -65,8 +65,10 @@ export default function DetailRestaurantPage() {
               <div>
                 <Label>List of Food 🍕:</Label>
                 <ul className="mt-1 space-y-1">
-                  {restaurant.menus.foods.map((food) => (
-                    <li className="text-sm">👉 {food.name}</li>
+                  {restaurant.menus.foods.map((food, i) => (
+                    <li key={i} className="text-sm">
+                      👉 {food.name}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -74,8 +76,10 @@ export default function DetailRestaurantPage() {
               <div>
                 <Label>List of Drink 🍷:</Label>
                 <ul className="mt-1 space-y-1">
-                  {restaurant.menus.drinks.map((drink) => (
-                    <li className="text-sm">👉 {drink.name}</li>
+                  {restaurant.menus.drinks.map((drink, i) => (
+                    <li key={i} className="text-sm">
+                      👉 {drink.name}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -85,8 +89,8 @@ export default function DetailRestaurantPage() {
           <div className="mt-6">
             <Label>Customes Reviews:</Label>
             <div className="mt-2 grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {restaurant.customerReviews.map((review) => (
-                <Review {...review} />
+              {restaurant.customerReviews.map((review, i) => (
+                <Review key={i} {...review} />
               ))}
               <PostReview />
             </div>

@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { CustomerReview } from "@/types/restaurant";
 import { CONFIG } from "@/configs/data";
+import useReview from "@/hooks/useReview";
 
 export const Label = ({ children }: { children: string }) => {
   return <h4 className="text-base text-slate-800 font-medium">{children}</h4>;
@@ -63,8 +64,19 @@ export const Review = ({ name, review, date }: CustomerReview) => {
 };
 
 export const PostReview = () => {
+  const {
+    name,
+    review,
+    openModal,
+    isPending,
+    toggleModal,
+    setName,
+    setReview,
+    handleSubmitReview,
+  } = useReview();
+
   return (
-    <Dialog>
+    <Dialog open={openModal} onOpenChange={toggleModal}>
       <DialogTrigger>
         <Button variant="secondary" className="h-full w-full rounded-md">
           <div className="flex flex-col justify-center items-center gap-1">
@@ -77,10 +89,16 @@ export const PostReview = () => {
         <DialogHeader>
           <DialogTitle>Add Review</DialogTitle>
           <div className="!mt-4">
-            <form className="space-y-2">
+            <form className="space-y-2" onSubmit={handleSubmitReview}>
               <div className="space-y-1 text-left">
                 <LabelForm htmlFor="name">Name</LabelForm>
-                <Input id="name" placeholder="Insert your name" required />
+                <Input
+                  id="name"
+                  placeholder="Insert your name"
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
               </div>
 
               <div className="space-y-1 !mb-2 text-left">
@@ -89,10 +107,14 @@ export const PostReview = () => {
                   id="review"
                   placeholder="Insert your review"
                   required
+                  onChange={(e) => setReview(e.target.value)}
+                  value={review}
                 />
               </div>
 
-              <Button className="w-full">Post Review</Button>
+              <Button disabled={isPending} className="w-full">
+                Post Review
+              </Button>
             </form>
           </div>
         </DialogHeader>
