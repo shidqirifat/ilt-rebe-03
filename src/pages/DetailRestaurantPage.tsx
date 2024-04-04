@@ -1,3 +1,5 @@
+import Error from "@/components/global/Error";
+import Loading from "@/components/global/Loading";
 import {
   BackToHome,
   Category,
@@ -6,57 +8,15 @@ import {
   PostReview,
   Review,
 } from "@/components/main/DetailRestaurant";
+import useDetailRestaurant from "@/hooks/useDetailRestaurant";
 import Layout from "@/layouts/Layout";
-import { getDetailRestaurant } from "@/services/restaurant";
-import { DetailRestaurant } from "@/types/restaurant";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
-// @TODO change to functional component and fetch to API
+// @TODO change to functional component using custom hooks
 export default function DetailRestaurantPage() {
-  const [restaurant, setRestaurant] = useState<DetailRestaurant | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const { id } = useParams();
+  const { restaurant, loading, error } = useDetailRestaurant();
 
-  useEffect(() => {
-    async function fetchDetailRestaurant() {
-      try {
-        const responseData = await getDetailRestaurant(id as string);
-
-        if (responseData.error) throw new Error(responseData.message);
-
-        setLoading(false);
-        setRestaurant(responseData.restaurant);
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-
-        if (error instanceof Error) console.error(error.message);
-        else console.error("There is an error");
-      }
-    }
-
-    window.scrollTo(0, 0);
-
-    fetchDetailRestaurant();
-  }, [id]);
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-red-700">
-        <h2 className="text-2xl text-white font-medium">There is an error</h2>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <h2 className="text-2xl text-sky-600 font-medium">Loading...</h2>
-      </div>
-    );
-  }
+  if (error) return <Error />;
+  if (loading) return <Loading />;
 
   if (restaurant) {
     return (
