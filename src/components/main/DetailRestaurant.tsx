@@ -12,17 +12,16 @@ import { Label as LabelForm } from "@/components/ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { CustomerReview } from "@/types/restaurant";
+import { CONFIG } from "@/configs/data";
 
 export const Label = ({ children }: { children: string }) => {
   return <h4 className="text-base text-slate-800 font-medium">{children}</h4>;
 };
 
 export const ImageRestaurant = ({ pirctureId }: { pirctureId: string }) => {
-  const BASE_IMAGE = "https://restaurant-api.dicoding.dev/images/medium";
-
   return (
     <img
-      src={`${BASE_IMAGE}/${pirctureId}`}
+      src={`${CONFIG.BASE_URL_IMAGE}/${pirctureId}`}
       alt="Restaurant"
       className="w-full h-96 object-cover my-4 rounded-xl"
     />

@@ -1,13 +1,12 @@
+import { CONFIG } from "@/configs/data";
 import { Restaurant } from "@/types/restaurant";
 import { Link } from "react-router-dom";
 
 const CardRestaurant = (props: Restaurant) => {
-  const BASE_IMAGE = "https://restaurant-api.dicoding.dev/images/medium";
-
   return (
     <div className="rounded-lg overflow-hidden shadow border border-slate-100">
       <img
-        src={`${BASE_IMAGE}/${props.pictureId}`}
+        src={`${CONFIG.BASE_URL_IMAGE}/${props.pictureId}`}
         alt="Melting Pot"
         className="object-cover h-48 w-full"
       />
