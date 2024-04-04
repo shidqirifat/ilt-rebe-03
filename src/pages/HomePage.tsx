@@ -5,8 +5,7 @@ import ListRestaurant from "@/components/main/ListRestaurant";
 import useListRestaurant from "@/hooks/useListRestaurant";
 import Layout from "@/layouts/Layout";
 
-// @TODO change to functional component using custom hooks
-export default function HoamePage() {
+export default function HomePage() {
   const { restaurants, loading, error } = useListRestaurant();
 
   if (error) return <Error />;

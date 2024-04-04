@@ -11,7 +11,6 @@ import {
 import useDetailRestaurant from "@/hooks/useDetailRestaurant";
 import Layout from "@/layouts/Layout";
 
-// @TODO change to functional component using custom hooks
 export default function DetailRestaurantPage() {
   const { restaurant, loading, error } = useDetailRestaurant();
 
