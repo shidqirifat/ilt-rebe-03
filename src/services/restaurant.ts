@@ -1,4 +1,3 @@
-import { CONFIG } from "@/configs/data";
 import {
   ResponseDetailRestaurant,
   ResponseListRestaurant,
@@ -16,7 +15,7 @@ export const getListRestaurant = async (
   await delay(2000);
 
   const response: AxiosResponse<ResponseListRestaurant> = await api.get(
-    `${CONFIG.BASE_URL_API}/search`,
+    "/search",
     { params: { q: keyword } }
   );
   return response.data;
@@ -28,7 +27,7 @@ export const getDetailRestaurant = async (
   await delay(2000);
 
   const response: AxiosResponse<ResponseDetailRestaurant> = await api.get(
-    `${CONFIG.BASE_URL_API}/detail/${id}`
+    `/detail/${id}`
   );
   return response.data;
 };
@@ -43,7 +42,7 @@ export const postReview = async (payload: PayloadReview) => {
   await delay(2000);
 
   const response: AxiosResponse<ResponseDetailRestaurant> = await api.post(
-    `${CONFIG.BASE_URL_API}/review`,
+    "/review",
     payload
   );
   return response.data;
