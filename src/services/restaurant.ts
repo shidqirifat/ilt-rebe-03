@@ -15,9 +15,9 @@ export const getListRestaurant = async (
 ): Promise<ResponseListRestaurant> => {
   await delay(2000);
 
-  const url = keyword ? `/search?q=${keyword}` : "/list";
   const response: AxiosResponse<ResponseListRestaurant> = await api.get(
-    `${CONFIG.BASE_URL_API}${url}`
+    `${CONFIG.BASE_URL_API}/search`,
+    { params: { q: keyword } }
   );
   return response.data;
 };
